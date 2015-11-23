@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html ng-app="teste">
+<head>
+    <title>Teste</title>
+	<meta charset="utf-8" />
+    <link href="Content/ladda-themeless.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="main.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    Controllers
+                </a>
+            </div>
+        </div>
+        </nav>
+        <div class="container main-content" ng-controller="testeCrtl">
+            <form ng-submit="onSubmit()" novalidate="novalidate">
+                <div class="form-group">
+                    <label for="username"> Username </label>
+                    <input type="text"
+                           class="form-control"
+                           ng-model="formModel.username"
+                           id="username"
+                           ng-pattern="/^[A-Za-z0-9_]{1,32}$/"
+                           ng-minlength="7"
+                           required="required"
+                           ng-pattern-err-type="badUsername" />
+                </div>
+                <div class="form-group">
+                    <label for="password"> Password </label>
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           required="required"
+                           class="form-control"
+                           ng-model="formModel.password"
+                           ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/"
+                           ng-pattern-err-type="badPassword" />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary"
+                            type="submit"
+                            ladda="submitting"
+                            data-style="expand-right"
+                           ng-click="onSubmit()">
+                        Log in
+                    </button>
+                </div>
+                <pre>{{formModel | json}}</pre>
+            </form>
+        </div>
+        <script src="Scripts/angular.js"></script>
+        <script src="Scripts/jcs-auto-validate.min.js"></script>
+        <script src="Scripts/spin.js"></script>
+        <script src="Scripts/ladda.min.js"></script>
+        <script src="Scripts/angular-ladda.min.js"></script>
+        <script src="main.js"></script>
+</body>
+</html>
